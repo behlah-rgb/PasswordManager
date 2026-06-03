@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        FileManager.createCredentials();
         // username and masterpassword
         Scanner sc = new Scanner(System.in);
         System.out.println("Username:");
