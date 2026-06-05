@@ -1,30 +1,74 @@
 # Password Manager
-A simple command-line password manager built in Java.
 
-The application allows users to store, view, and delete credentials for different services. This project is being developed as a learning exercise to improve Java, object-oriented programming, and software development skills.
+A command-line password manager built in Java.
+
+This project was created to learn object-oriented programming, file handling, and software development fundamentals. The application allows users to store, view, delete, and persist credentials between program executions.
 
 ## Features
 
 - Store credentials
 - View saved credentials
 - Delete credentials
+- Persistent storage using text files
+- Automatic loading of saved credentials on startup
 - Menu-driven CLI interface
 
-## Built With
+## Technologies Used
 
 - Java
 - ArrayList
+- File I/O
+- BufferedReader
+- BufferedWriter
 - Object-Oriented Programming
+
+## Project Structure
+
+- Main.java - User interaction and application flow
+- Credentials.java - Credential model
+- FileManager.java - Loading and saving credentials
+
+## How It Works
+
+Credentials are stored in a text file using the format:
+
+Service, Username, Password
+
+Example:
+
+Github, john123, password123
+Gmail, john@gmail.com, mypassword
+
+When the program starts, saved credentials are loaded into memory. When the program exits, credentials are written back to the file.
 
 ## Current Limitations
 
-- Credentials are stored only during program execution
-- Data is not persisted to files
-- Passwords are not encrypted
+- Passwords are stored in plain text
 - Single-user implementation
+- No encryption
+- No password generation
+- No search functionality
+- No editing of existing credentials
 
-## Running the Project
+## Future Improvements
 
-1. Clone the repository
-2. Compile the Java files
-3. Run Main.java
+- Master password authentication
+- Password hashing
+- AES encryption
+- Password generator
+- Search credentials
+- Edit credentials
+- JavaFX graphical interface
+- Database support
+
+## Learning Objectives
+
+This project demonstrates:
+
+- Classes and objects
+- Constructors
+- Collections
+- File handling
+- Exception handling
+- Basic software architecture
+- Git and GitHub workflow
