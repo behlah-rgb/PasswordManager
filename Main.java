@@ -11,6 +11,7 @@ public class Main {
         String mainPass = sc.nextLine();
 
         ArrayList<Credentials> credentials = new ArrayList<Credentials>();
+        FileManager.loadCredentials(credentials);
         // ask to store credentials
         boolean running = true;
         while (running) {
@@ -63,6 +64,7 @@ public class Main {
                     break;
                 case 4:
                     running = false;
+                    FileManager.saveCredentials(credentials);
                     break;
                 default:
                     System.out.println("Invalid choice. Try again.");
