@@ -2,17 +2,18 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        FileManager.createCredentials();
-        // username and masterpassword
         Scanner sc = new Scanner(System.in);
-        System.out.println("Username:");
-        String mainUser = sc.nextLine();
-        System.out.println("Password:");
-        String mainPass = sc.nextLine();
 
+        // username and masterpassword
+        // System.out.println("Username:");
+        // String mainUser = sc.nextLine().trim();
+        // System.out.println("Password:");
+        // String mainPass = sc.nextLine().trim();
+
+        FileManager.createCredentials();
         ArrayList<Credentials> credentials = new ArrayList<Credentials>();
         FileManager.loadCredentials(credentials);
-        // ask to store credentials
+
         boolean running = true;
         while (running) {
 
@@ -21,11 +22,13 @@ public class Main {
                     1] View Credentials
                     2] Store Credentials
                     3] Delete Credentials
-                    4] Exit
+                    4] Search Credentials
+                    5] Update Credentials
+                    6] Exit
                     """);
 
             int choice = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine().trim();
 
             switch (choice) {
                 case 1:
@@ -40,14 +43,14 @@ public class Main {
                 case 2:
                     System.out.println("Enter Credentials:");
 
-                    System.out.println("Service:");
-                    String service = sc.nextLine();
+                    System.out.print("Service: ");
+                    String service = sc.nextLine().trim();
 
-                    System.out.println("Username:");
-                    String username = sc.nextLine();
+                    System.out.print("Username: ");
+                    String username = sc.nextLine().trim();
 
-                    System.out.println("Password:");
-                    String password = sc.nextLine();
+                    System.out.print("Password: ");
+                    String password = sc.nextLine().trim();
 
                     Credentials cred = new Credentials(service, username, password);
                     credentials.add(cred);
@@ -57,12 +60,93 @@ public class Main {
                     if (credentials.isEmpty())
                         System.out.println("Password Manager is Empty!");
                     else {
-                        System.out.println("Enter Service name:");
-                        String delService = sc.nextLine();
+                        System.out.print("Enter Service name: ");
+                        String delService = sc.nextLine().trim();
                         credentials.removeIf(c -> c.service.equalsIgnoreCase(delService));
                     }
                     break;
                 case 4:
+                    System.out.print("Enter service name: ");
+                    String searchKey = sc.nextLine().trim();
+                    boolean searchFound = false;
+                    for (Credentials c : credentials) {
+                        if (searchKey.equalsIgnoreCase(c.service)) {
+                            System.out.println(c.toString());
+                            searchFound = true;
+                        }
+                    }
+                    if (!searchFound)
+                        System.out.println("No credentials found for service: " + searchKey);
+                    break;
+                case 5:
+                    System.out.println("""
+                            1] Update Username
+                            2] Update Password
+                            3] Update Username & Password
+                            """);
+                    int updateChoice = sc.nextInt();
+                    sc.nextLine().trim();
+
+                    Set<Integer> validChoices = Set.of(1, 2, 3);
+                    if (!validChoices.contains(updateChoice)) {
+                        System.out.println("Invalid Choice. Try Again!");
+                        break;
+                    }
+                    System.out.print("Enter service name: ");
+                    String updateServiceKey = sc.nextLine().trim();
+                    System.out.print("Enter username: ");
+                    String updateUsernameKey = sc.nextLine().trim();
+
+                    boolean updateFound = false;
+                    for (Credentials c : credentials) {
+                        if (updateServiceKey.equalsIgnoreCase(c.service)
+                                && updateUsernameKey.equalsIgnoreCase(c.username)) {
+                            if (updateChoice == 1) {
+                                System.out.print("Enter new username: ");
+                                String newUsername = sc.nextLine().trim();
+                                if (newUsername.equalsIgnoreCase(c.username))
+                                    System.out.println("New username can't be the old username!");
+                                else {
+                                    c.username = newUsername;
+                                    System.out.println("Username Updated.");
+                                }
+                            } else if (updateChoice == 2) {
+                                System.out.print("Enter new password: ");
+                                String newPass = sc.nextLine().trim();
+                                if (newPass.equalsIgnoreCase(c.password))
+                                    System.out.println("New password can't be the old password!");
+                                else {
+                                    c.password = newPass;
+                                    System.out.println("Password Updated.");
+                                }
+                            } else {
+                                System.out.print("Enter new username: ");
+                                String newUsername = sc.nextLine().trim();
+                                if (newUsername.equalsIgnoreCase(c.username))
+                                    System.out.println("New username can't be the old username!");
+                                else {
+                                    c.username = newUsername;
+                                    System.out.println("Username Updated.");
+                                }
+
+                                System.out.print("Enter new password: ");
+                                String newPass = sc.nextLine().trim();
+                                if (newPass.equalsIgnoreCase(c.password))
+                                    System.out.println("New password can't be the old password!");
+                                else {
+                                    c.password = newPass;
+                                    System.out.println("Password Updated.");
+                                }
+                            }
+                            updateFound = true;
+                            break;
+                        }
+                    }
+                    if (!updateFound)
+                        System.out.println("No credentials found for service: " + updateServiceKey + "and username: "
+                                + updateUsernameKey);
+                    break;
+                case 6:
                     running = false;
                     FileManager.saveCredentials(credentials);
                     break;
