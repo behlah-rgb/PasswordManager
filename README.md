@@ -2,31 +2,53 @@
 
 A command-line password manager built in Java.
 
-This project was created to learn object-oriented programming, file handling, and software development fundamentals. The application allows users to store, view, delete, and persist credentials between program executions.
+This project was created to strengthen Java fundamentals, object-oriented programming concepts, and file handling. Users can store, view, search, update, and delete credentials through a menu-driven interface. Credential data is persisted between program executions using file storage.
 
 ## Features
 
-- Store credentials
-- View saved credentials
-- Delete credentials
-- Persistent storage using text files
-- Automatic loading of saved credentials on startup
-- Menu-driven CLI interface
+* Add new credentials
+* View all saved credentials
+* Search credentials by service name
+* Update usernames and passwords
+* Delete credentials
+* Persistent storage using text files
+* Automatic loading of credentials on startup
+* Menu-driven CLI interface
 
 ## Technologies Used
 
-- Java
-- ArrayList
-- File I/O
-- BufferedReader
-- BufferedWriter
-- Object-Oriented Programming
+* Java
+* ArrayList
+* File I/O
+* BufferedReader
+* BufferedWriter
+* Object-Oriented Programming (OOP)
 
 ## Project Structure
 
-- Main.java - User interaction and application flow
-- Credentials.java - Credential model
-- FileManager.java - Loading and saving credentials
+### Main.java
+
+Handles:
+
+* User interaction
+* Menu navigation
+* Credential management operations
+
+### Credentials.java
+
+Represents a credential object containing:
+
+* Service name
+* Username
+* Password
+
+### FileManager.java
+
+Handles:
+
+* Creating the credentials file
+* Loading credentials from storage
+* Saving credentials to storage
 
 ## How It Works
 
@@ -37,38 +59,46 @@ Service, Username, Password
 Example:
 
 Github, john123, password123
-Gmail, john@gmail.com, mypassword
 
-When the program starts, saved credentials are loaded into memory. When the program exits, credentials are written back to the file.
+Gmail, [john@gmail.com](mailto:john@gmail.com), mypassword
+
+When the application starts, credentials are loaded into memory. When the application exits, the current credential list is saved back to the file.
+
+## Concepts Practiced
+
+* Classes and Objects
+* Constructors
+* Collections (ArrayList)
+* File Handling
+* Exception Handling
+* Method Design
+* Object References
+* Data Persistence
+* Basic Software Architecture
 
 ## Current Limitations
 
-- Passwords are stored in plain text
-- Single-user implementation
-- No encryption
-- No password generation
-- No search functionality
-- No editing of existing credentials
+* Passwords are stored in plain text
+* No encryption
+* No password strength analysis
+* No password generation
+* No master password authentication
+* Single-user implementation
 
-## Future Improvements
+## Planned Improvements
 
-- Master password authentication
-- Password hashing
-- AES encryption
-- Password generator
-- Search credentials
-- Edit credentials
-- JavaFX graphical interface
-- Database support
+* Password generator using SecureRandom
+* Password strength checker
+* Master password authentication
+* Password hashing
+* AES encryption
+* JavaFX graphical interface
+* Database-backed storage
+* Credential categories and tags
 
-## Learning Objectives
+## Running the Project
 
-This project demonstrates:
-
-- Classes and objects
-- Constructors
-- Collections
-- File handling
-- Exception handling
-- Basic software architecture
-- Git and GitHub workflow
+1. Clone the repository.
+2. Compile the Java files.
+3. Run Main.java.
+4. Use the menu to manage credentials.
