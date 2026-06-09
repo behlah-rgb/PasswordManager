@@ -24,7 +24,8 @@ public class Main {
                     3] Delete Credentials
                     4] Search Credentials
                     5] Update Credentials
-                    6] Exit
+                    6] Generate Password
+                    7] Exit
                     """);
 
             int choice = sc.nextInt();
@@ -147,6 +148,18 @@ public class Main {
                                 + updateUsernameKey);
                     break;
                 case 6:
+                    System.out.print("Enter password length: ");
+                    int passLength = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Include symbols (y/n): ");
+                    String symbol = sc.nextLine().trim();
+                    System.out.print("Include digits (y/n): ");
+                    String digit = sc.nextLine().trim();
+
+                    String passGenerated = PasswordGenerator.generatePass(symbol, digit, passLength);
+                    System.out.println("Password: " + passGenerated);
+                    break;
+                case 7:
                     running = false;
                     FileManager.saveCredentials(credentials);
                     break;
