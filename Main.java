@@ -4,14 +4,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // username and masterpassword
-        // System.out.println("Username:");
-        // String mainUser = sc.nextLine().trim();
-        // System.out.println("Password:");
-        // String mainPass = sc.nextLine().trim();
+        System.out.println("Username:");
+        String masterUser = sc.nextLine().trim();
+        System.out.println("Password:");
+        String masterPass = sc.nextLine().trim();
+        ArrayList<MasterPasswordManager> masterPasswordManager = new ArrayList<>();
+        MasterPasswordManager.loadMasterFile(masterPasswordManager);
 
-        FileManager.createCredentials();
-        ArrayList<Credentials> credentials = new ArrayList<Credentials>();
+        ArrayList<Credentials> credentials = new ArrayList<>();
         FileManager.loadCredentials(credentials);
 
         boolean running = true;

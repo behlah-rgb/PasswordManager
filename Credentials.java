@@ -17,6 +17,7 @@ public class Credentials {
     }
 
     String forFile() {
-        return service + ", " + username + ", " + password + "\n";
+        return service + ", " + username + ", " + password + "\n"; // new line character here hence bw.newLine() not
+                                                                   // required
     }
 }
