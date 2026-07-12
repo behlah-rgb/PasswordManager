@@ -21,7 +21,7 @@ public class MasterPasswordManager {
     }
 
     static void loadMasterFile(ArrayList<MasterPasswordManager> masterPasswordManager) {
-        File masterFile = new File("MasterPasswordManager.txt");
+        File masterFile = new File("MastersCredentials.txt");
 
         if (!masterFile.exists())
             System.out.println("First Run!");
@@ -41,7 +41,7 @@ public class MasterPasswordManager {
 
     static void saveMasterPasswordManager(ArrayList<MasterPasswordManager> masterPasswordManager) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("MasterPasswordManager.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("MastersCredentials.txt"))) {
             for (MasterPasswordManager mp : masterPasswordManager) {
                 bw.write(mp.forFile());
             }
