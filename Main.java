@@ -7,17 +7,19 @@ public class Main {
         ArrayList<MasterPasswordManager> masterPasswordManager = new ArrayList<>();
         MasterPasswordManager.loadMasterFile(masterPasswordManager);
 
+        System.out.println("New User? (y/n): ");
+        String newUser = sc.nextLine().trim();
         System.out.println("Username:");
         String masterUser = sc.nextLine().trim();
         System.out.println("Password:");
         String masterPass = sc.nextLine().trim();
 
-        boolean verdict = MasterPasswordManager.authenticate(masterPasswordManager, masterUser, masterPass);
+        boolean verdict = MasterPasswordManager.authenticate(masterPasswordManager, masterUser, masterPass, newUser);
         MasterPasswordManager.saveMasterPasswordManager(masterPasswordManager);
 
         if (verdict) {
             ArrayList<Credentials> credentials = new ArrayList<>();
-            FileManager.loadCredentials(credentials);
+            FileManager.loadCredentials(credentials, masterUser);
 
             boolean running = true;
             while (running) {
@@ -99,7 +101,7 @@ public class Main {
                         break;
                     case 7:
                         running = false;
-                        FileManager.saveCredentials(credentials);
+                        FileManager.saveCredentials(credentials, masterUser);
                         break;
                     default:
                         System.out.println("Invalid choice. Try again.");

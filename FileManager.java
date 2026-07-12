@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class FileManager {
 
-    static void loadCredentials(ArrayList<Credentials> credentials) {
-        File credFile = new File("Credentials.txt");
+    static void loadCredentials(ArrayList<Credentials> credentials, String masterUser) {
+        File credFile = new File(masterUser + "Credentials.txt");
 
         if (!credFile.exists())
             System.out.println("First Run!");
@@ -22,8 +22,8 @@ public class FileManager {
         }
     }
 
-    static void saveCredentials(ArrayList<Credentials> credentials) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Credentials.txt"))) {
+    static void saveCredentials(ArrayList<Credentials> credentials, String masterUser) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(masterUser + "Credentials.txt"))) {
             for (Credentials c : credentials) {
                 bw.write(c.forFile());
             }

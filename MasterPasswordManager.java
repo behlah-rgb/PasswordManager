@@ -40,6 +40,7 @@ public class MasterPasswordManager {
     }
 
     static void saveMasterPasswordManager(ArrayList<MasterPasswordManager> masterPasswordManager) {
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("MasterPasswordManager.txt"))) {
             for (MasterPasswordManager mp : masterPasswordManager) {
                 bw.write(mp.forFile());
@@ -50,8 +51,8 @@ public class MasterPasswordManager {
     }
 
     static boolean authenticate(ArrayList<MasterPasswordManager> masterPasswordManager, String masterUser,
-            String masterPass) {
-        if (masterPasswordManager.isEmpty()) {
+            String masterPass, String newUser) {
+        if (newUser.equalsIgnoreCase("y")) {
             MasterPasswordManager mp = new MasterPasswordManager(masterUser, masterPass);
             masterPasswordManager.add(mp);
             return true;
